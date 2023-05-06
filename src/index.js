@@ -1,3 +1,7 @@
-const GREETING = 'Hello world';
+import Template from './templates/Template.js';
+console.log('hola');
 
-console.info(GREETING)
+(async function App() {
+  const main = null || document.getElementById('main');
+  main.innerHTML = await Template();
+})();
