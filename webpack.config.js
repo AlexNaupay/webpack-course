@@ -1,6 +1,7 @@
 /** @type {import('webpack').Configuration} */
 const path = require('path'); // Para trabajar con archivos y rutas de directorios
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     // mode: 'production', // le pasamos explicitamente el modo desde el archivo
@@ -26,6 +27,10 @@ module.exports = {
                 use: {
                     loader: "babel-loader"
                 },
+            },
+            {
+                test: /\.css|\.styl$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
             }
         ],
 
@@ -39,7 +44,8 @@ module.exports = {
             // minify: false,
             // xhtml: false,
             // hash: false, // If true then append a unique webpack compilation hash to all included scripts and CSS files. This is useful for cache busting
-        })
+        }),
+        new MiniCssExtractPlugin(),
     ]
 
 }
