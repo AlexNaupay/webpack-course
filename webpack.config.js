@@ -20,7 +20,13 @@ module.exports = {
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     resolve: {
-        extensions: ['.js'] // LOS ARCHIVOS QUE WEBPACK VA A LEER
+        extensions: ['.js'], // LOS ARCHIVOS QUE WEBPACK VA A LEER
+        alias: {
+            '@utils': path.resolve(__dirname, 'src/utils/'),
+            '@templates': path.resolve(__dirname, 'src/templates/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@images': path.resolve(__dirname, 'src/assets/images/'),
+        }
     },
 
     module: {
