@@ -13,4 +13,6 @@
 
 ## optimization
 - npm install -D terser-webpack-plugin css-minimizer-webpack-plugin
-- 
+
+## environment
+- npm install -D dotenv-webpack

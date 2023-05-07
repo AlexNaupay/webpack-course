@@ -6,6 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     // mode: 'production', // le pasamos explicitamente el modo desde el archivo
@@ -80,7 +81,8 @@ module.exports = {
                     to: "assets/images" // RUTA FINAL DEL DIST
                 }
             ]
-        })
+        }),
+        new Dotenv()
     ],
 
     optimization: {
