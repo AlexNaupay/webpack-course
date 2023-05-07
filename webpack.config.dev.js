@@ -8,6 +8,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: 'development', // le pasamos explicitamente el modo desde el archivo
+    devtool: 'source-map',
     //watch: true,
     entry: './src/index.js', // el punto de entrada de mi aplicación
     output: { // Esta es la salida de mi bundle
