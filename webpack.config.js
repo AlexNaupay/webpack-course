@@ -18,7 +18,8 @@ module.exports = {
         //filename: 'main.js', // EL NOMBRE DEL ARCHIVO FINAL,
         filename: '[name].[contenthash].js',
 
-        assetModuleFilename: 'assets/images/[hash][ext][query]'
+        assetModuleFilename: 'assets/images/[hash][ext][query]',
+        clean: true
     },
     resolve: {
         extensions: ['.js'], // LOS ARCHIVOS QUE WEBPACK VA A LEER
