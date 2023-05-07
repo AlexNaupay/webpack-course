@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
 module.exports = {
     // mode: 'production', // le pasamos explicitamente el modo desde el archivo
     entry: './src/index.js', // el punto de entrada de mi aplicación
@@ -11,8 +14,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         // resolve lo que hace es darnos la ruta absoluta de el S.O hasta nuestro archivo
         // para no tener conflictos entre Linux, Windows, etc
-        filename: 'main.js', // EL NOMBRE DEL ARCHIVO FINAL,
-        //assetModuleFilename: 'assets/images/[hash][ext]'
+        //filename: 'main.js', // EL NOMBRE DEL ARCHIVO FINAL,
+        filename: '[name].[contenthash].js',
+
+        assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     resolve: {
         extensions: ['.js'] // LOS ARCHIVOS QUE WEBPACK VA A LEER
@@ -51,7 +56,7 @@ module.exports = {
                         // Especifica el tipo MIME con el que se alineará el archivo.
                         // Los MIME Types (Multipurpose Internet Mail Extensions)
                         // son la manera standard de mandar contenido a través de la red.
-                        name: "[name].[ext]",
+                        name: "[name].[contenthash].[ext]",
                         // EL NOMBRE INICIAL DEL PROYECTO + SU EXTENSIÓN
                         // PUEDES AGREGARLE [name]hola.[ext] y el output del archivo seria
                         // ubuntu-regularhola.woff
@@ -76,7 +81,9 @@ module.exports = {
             // xhtml: false,
             // hash: false, // If true then append a unique webpack compilation hash to all included scripts and CSS files. This is useful for cache busting
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'assets/[name].[contenthash].css'
+        }),
         new CopyPlugin({ // CONFIGURACIÓN DEL COPY PLUGIN
             patterns: [
                 {
@@ -85,6 +92,14 @@ module.exports = {
                 }
             ]
         })
-    ]
+    ],
+
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new CssMinimizerPlugin(),
+            new TerserPlugin()
+        ]
+    }
 
 }

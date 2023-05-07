@@ -10,3 +10,7 @@
 - npm install sass-loader | stylus-loader -D
 - npm i copy-webpack-plugin -D
 -  npm install -D url-loader file-loader 
+
+## optimization
+- npm install -D terser-webpack-plugin css-minimizer-webpack-plugin
+- 
