@@ -2,6 +2,7 @@
 const path = require('path'); // Para trabajar con archivos y rutas de directorios
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     // mode: 'production', // le pasamos explicitamente el modo desde el archivo
@@ -46,6 +47,14 @@ module.exports = {
             // hash: false, // If true then append a unique webpack compilation hash to all included scripts and CSS files. This is useful for cache busting
         }),
         new MiniCssExtractPlugin(),
+        new CopyPlugin({ // CONFIGURACIÓN DEL COPY PLUGIN
+            patterns: [
+                {
+                    from: path.resolve(__dirname , "src" , 'assets/images'), // CARPETA A MOVER AL DIST
+                    to: "assets/images" // RUTA FINAL DEL DIST
+                }
+            ]
+        })
     ]
 
 }

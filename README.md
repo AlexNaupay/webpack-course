@@ -8,4 +8,4 @@
 - npm i html-webpack-plugin -D
 - npm i mini-css-extract-plugin css-loader -D
 - npm install sass-loader | stylus-loader -D
-- 
+- npm i copy-webpack-plugin -D
