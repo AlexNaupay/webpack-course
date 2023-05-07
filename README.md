@@ -16,3 +16,6 @@
 
 ## environment
 - npm install -D dotenv-webpack
+
+https://gwfh.mranftl.com/fonts
+"build": "node ./scripts/create-env.js && webpack --mode production",
